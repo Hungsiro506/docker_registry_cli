@@ -28,30 +28,29 @@ The CLI uses the Catalog API available through /v2/_catalog in the new developme
 
 `docker run --rm so0k/registry-cli:alpine <REGISTRY_ENDPOINT> <keyword> <options>`
 
-**REGISTRY_ENDPOINT** : `<REGISTRY_HOST>:<REGISTRY_PORT>`
+*   REGISTRY_ENDPOINT : `<REGISTRY_HOST>:<REGISTRY_PORT>`
 
-or with a linked to a local registry container launched by `docker-compose` command above:
+    example with link to a local registry container launched by `docker-compose` command above:
 
-`docker run --rm --link registry_endpoint_1:registry so0k/registry-cli:alpine registry:5000 <keyword> <options>`
+    `docker run --rm --link registry_endpoint_1:registry so0k/registry-cli:alpine registry:5000 <keyword> <options>`
 
-**KEYWORD** :
+* KEYWORD :
 
-+ *search* - allows searching for Docker Images. Supports partial search. No RegEx Support yet. 
+    * *search* - allows searching for Docker Images. Supports partial search. No RegEx Support yet. 
 
-eg:-
+      eg:-
 
-`python browser.py 192.168.59.103:5000 search busybox`
+      `python browser.py 192.168.59.103:5000 search busybox`
 
-`python browser.py 192.168.59.103:5000 search busy`
+      `python browser.py 192.168.59.103:5000 search busy`
 
-`python browser.py 192.168.59.103:5000 search bu`
+      `python browser.py 192.168.59.103:5000 search bu`
 
-`python browser.py 192.168.59.103:5000 search jenkins`
+      `python browser.py 192.168.59.103:5000 search jenkins`
 
 
-+ *list* - lists all the Docker images available in the Image Registry with their respective tags 
+    * *list* - lists all the Docker images available in the Image Registry with their respective tags 
 
-eg:- 
+      eg:- 
 
-`python browser.py 192.168.59.103:5000 list all`
-
+      `python browser.py 192.168.59.103:5000 list all`
