@@ -19,8 +19,14 @@ endpoint:
     - /var/lib/registry/:var/lib/registry/
 ```
 
-`docker-compose up -p registry -d`
+```bash
+docker-compose up -p registry -d
+docker run -it --rm --link registry_reg_1:registry --entrypoint /bin/sh so0k/registry-cli:alpine
+```
 
+```bash
+wget -qO - registry:5000/v2/_catalog
+```
 
 The CLI uses the Catalog API available through /v2/_catalog in the new development version of Docker Registry.
 
