@@ -1,4 +1,4 @@
-FROM python:2.7-slim
+FROM frolvlad/alpine-python2:latest
 MAINTAINER vivekjuneja@gmail.com
 
 RUN mkdir -p /usr/src/app
