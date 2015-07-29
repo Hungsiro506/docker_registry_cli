@@ -28,13 +28,13 @@ The CLI uses the Catalog API available through /v2/_catalog in the new developme
 
 `docker run --rm so0k/registry-cli:alpine <REGISTRY_ENDPOINT> <keyword> <options>`
 
-REGISTRY_ENDPOINT : `<IP_ADDRESS_DOCKER_REGISTRY>:<PORT>` eg: registry.mysite.com
+**REGISTRY_ENDPOINT** : `<REGISTRY_HOST>:<REGISTRY_PORT>`
 
 or with a linked to a local registry container launched by `docker-compose` command above:
 
 `docker run --rm --link registry_endpoint_1:registry so0k/registry-cli:alpine registry:5000 <keyword> <options>`
 
-keyword :
+**KEYWORD** :
 
 + *search* - allows searching for Docker Images. Supports partial search. No RegEx Support yet. 
 
