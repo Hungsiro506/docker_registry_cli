@@ -1,14 +1,38 @@
 # docker_registry_cli
+[![](https://badge.imagelayers.io/so0k/registry-cli:alpine.svg)](https://imagelayers.io/?images=so0k/registry-cli:alpine 'badge by imagelayers.io')
 
 Docker Registry CLI - Currently ONLY Supports the Search capability via Catalog API in the new version of Docker Registry v2. 
 
-To use, run the latest Docker Registry Distribution from https://github.com/docker/distribution. The CLI uses the Catalog API available through /v2/_catalog in the new development version of Docker Registry.
+To use, run the latest Docker Registry Distribution (distribution master):
 
-**Usage:-**
+**docker-compose.yml**
 
-`python browser.py <REGISTRY_ENDPOINT> <keyword> <options>`
+```yaml
+endpoint:
+   image: distribution/registry:master
+   restart: always
+   environment:
+    - REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/var/lib/registry
+   ports:
+    - 5000
+   volumes:
+    - /var/lib/registry/:var/lib/registry/
+```
 
-REGISTRY_ENDPOINT : `<IP_ADDRESS_DOCKER_REGISTRY>:<PORT>` eg: 192.168.59.103:5000
+`docker-compose up -p registry -d`
+
+
+The CLI uses the Catalog API available through /v2/_catalog in the new development version of Docker Registry.
+
+## Usage:
+
+`docker run --rm so0k/registry-cli:alpine <REGISTRY_ENDPOINT> <keyword> <options>`
+
+REGISTRY_ENDPOINT : `<IP_ADDRESS_DOCKER_REGISTRY>:<PORT>` eg: registry.mysite.com
+
+or with a linked to a local registry container launched by `docker-compose` command above:
+
+`docker run --rm --link registry_endpoint_1:registry so0k/registry-cli:alpine registry:5000 <keyword> <options>`
 
 keyword :
 
@@ -30,51 +54,4 @@ eg:-
 eg:- 
 
 `python browser.py 192.168.59.103:5000 list all`
-
-
-To use the Dockerfile, refer to the following examples :-
-
-1. `docker build -t <imagename> .`
-
-2. `docker run -p 5000:5000 -d <imagename>  192.168.59.103:5000 search busybox`
-
-Examples:- 
-
-`$ docker build -t docker_reg_search .`
-
-`$ docker run docker_reg_search 192.168.59.103:5002 list all`
-
-`-----------`
-
-`Name: busybox`
-
-`Tags: v1	v2	latest`
-
-`-----------`
-
-`Name: busy`
-
-`Tags: v2`
-
-`-----------`
-
-`Name: jenkins`
-
-`Tags: latest`
-
-
-`$ docker run docker_reg_search 192.168.59.103:5002 search bus`
-
-`-----------`
-
-`Name: busybox`
-
-`Tags: v1	v2	latest`
-
-`-----------`
-
-`Name: busy`
-
-`Tags: v2`
-
 
